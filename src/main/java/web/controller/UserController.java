@@ -35,15 +35,14 @@ public class UserController {
     }
 
 
-
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    public String deleteUser(@RequestParam(value = "id", required = false) Long id) {
         userService.deleteUser(id);
         return "redirect:/";
     }
 
     @GetMapping("/update/{id}")
-    public String updateUserForm(@PathVariable("id") Long id, ModelMap model) {
+    public String updateUserForm(@RequestParam(value = "id", required = false) Long id, ModelMap model) {
         User user = userService.findUserById(id);
         model.addAttribute("user", user);
         return "update";
